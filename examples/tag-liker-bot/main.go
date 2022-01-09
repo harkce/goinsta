@@ -4,7 +4,7 @@ import (
 	"log"
 	"os"
 
-	"github.com/Davincible/goinsta/v2"
+	"github.com/harkce/goinsta/v2"
 )
 
 func fetchTag(insta *goinsta.Instagram, tag string) error {

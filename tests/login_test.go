@@ -3,7 +3,7 @@ package tests
 import (
 	"testing"
 
-	"github.com/Davincible/goinsta"
+	"github.com/harkce/goinsta"
 )
 
 func TestImportAccount(t *testing.T) {

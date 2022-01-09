@@ -7,15 +7,15 @@ since which a lot has changed, I have taken the courtesy to build upon his
 great framework and update the code to be compatible with apk v195.0.0.31.123 
 (July 6, 2021). After migrating the endpoints and adding new ones, there are 
 are few breaking changes. You can check the full walkthrough documentation in
-the [wiki](https://github.com/Davincible/goinsta/wiki/1.-Getting-Started), 
+the [wiki](https://github.com/harkce/goinsta/wiki/1.-Getting-Started), 
 and looking at the code to further understand how it works is encouraged.
 
 #### Golang + Instagram Private API
-<p align="center"><img width=100% src="https://raw.githubusercontent.com/Davincible/goinsta/v1/resources/goinsta-image.png"></p>
+<p align="center"><img width=100% src="https://raw.githubusercontent.com/harkce/goinsta/v1/resources/goinsta-image.png"></p>
 
 > Unofficial Instagram API for Golang
 
-[![Build Status](https://travis-ci.org/Davincible/goinsta.svg?branch=master)](https://travis-ci.org/Davincible/goinsta) [![GoDoc](https://godoc.org/github.com/Davincible/goinsta?status.svg)](https://godoc.org/github.com/Davincible/goinsta) [![Go Report Card](https://goreportcard.com/badge/github.com/Davincible/goinsta)](https://goreportcard.com/report/github.com/Davincible/goinsta) [![Gitter chat](https://badges.gitter.im/goinsta/community.png)](https://gitter.im/goinsta/community)
+[![Build Status](https://travis-ci.org/harkce/goinsta.svg?branch=master)](https://travis-ci.org/harkce/goinsta) [![GoDoc](https://godoc.org/github.com/harkce/goinsta?status.svg)](https://godoc.org/github.com/harkce/goinsta) [![Go Report Card](https://goreportcard.com/badge/github.com/harkce/goinsta)](https://goreportcard.com/report/github.com/harkce/goinsta) [![Gitter chat](https://badges.gitter.im/goinsta/community.png)](https://gitter.im/goinsta/community)
 
 ### Features
 
@@ -29,7 +29,7 @@ and looking at the code to further understand how it works is encouraged.
 
 ### Package installation 
 
-`go get -u -v github.com/Davincible/goinsta@latest`
+`go get -u -v github.com/harkce/goinsta@latest`
 
 ### Example
 
@@ -39,7 +39,7 @@ package main
 import (
 	"fmt"
 
-	"github.com/Davincible/goinsta"
+	"github.com/harkce/goinsta"
 )
 
 func main() {  
@@ -63,7 +63,7 @@ func main() {
 }
 ```
 
-For the full documentation, check the [wiki](https://github.com/Davincible/goinsta/wiki/1.-Getting-Started), or run `go doc -all`.
+For the full documentation, check the [wiki](https://github.com/harkce/goinsta/wiki/1.-Getting-Started), or run `go doc -all`.
 
 ### Legal
 
@@ -74,7 +74,7 @@ This code is in no way affiliated with, authorized, maintained, sponsored or end
 Goinsta used gopkg.in as versioning control. Stable new API is the version v3.0. You can get it using:
 
 ```bash
-$ go get -u -v github.com/Davincible/goinsta
+$ go get -u -v github.com/harkce/goinsta
 ```
 
 Or 
@@ -82,6 +82,6 @@ Or
 If you have `GO111MODULE=on`
 
 ```
-$ go get -u github.com/Davincible/goinsta
+$ go get -u github.com/harkce/goinsta
 ```
 
