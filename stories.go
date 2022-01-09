@@ -234,28 +234,22 @@ func (media *Reel) Sync() error {
 	}
 
 	id := media.ID.(string)
-	data, err := json.Marshal(
-		map[string]interface{}{
-			"exclude_media_ids":          "[]",
-			"supported_capabilities_new": supCap,
-			"source":                     "reel_feed_timeline",
-			"_uid":                       toString(insta.Account.ID),
-			"_uuid":                      insta.uuid,
-			"user_ids":                   []string{id},
-		},
-	)
-	if err != nil {
-		return err
+	data := map[string]string{
+		"exclude_media_ids":          "[]",
+		"supported_capabilities_new": supCap,
+		"source":                     "reel_feed_timeline",
+		"_uid":                       toString(insta.Account.ID),
+		"_uuid":                      insta.uuid,
+		"reel_ids":                   id,
 	}
 
 	body, _, err := insta.sendRequest(
 		&reqOptions{
 			Endpoint: urlReelMedia,
-			IsPost:   true,
-			Query:    generateSignature(data),
+			Query:    data,
 		},
 	)
-	if err == nil {
+	if err != nil {
 		return err
 	}
 
