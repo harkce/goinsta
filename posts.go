@@ -6,6 +6,10 @@ import (
 )
 
 type Posts struct {
+	insta  *Instagram
+	limit  int
+	userID int64
+
 	User struct {
 		EdgeOwnerToTimelineMedia struct {
 			Count    int `json:"count"`
@@ -138,26 +142,43 @@ type postResp struct {
 	Status string `json:"status"`
 }
 
-type FetchPostOptions struct {
-	Limit  int
-	Offset string
+type fetchPostOptions struct {
+	limit  int
+	offset string
+	userID int64
 }
 
-func (user *User) FetchPost(opts FetchPostOptions) (*Posts, error) {
-	insta := user.insta
-	id := fmt.Sprintf("%d", user.ID)
+// Next fetch next posts with previously fetch options.
+func (posts *Posts) Next() (*Posts, error) {
+	if !posts.User.EdgeOwnerToTimelineMedia.PageInfo.HasNextPage {
+		return nil, nil
+	}
+
+	return fetchPost(posts.insta, fetchPostOptions{
+		limit:  posts.limit,
+		offset: posts.User.EdgeOwnerToTimelineMedia.PageInfo.EndCursor,
+		userID: posts.userID,
+	})
+}
+
+// FetchPost fetch user's posts with defined limit.
+func (user *User) FetchPost(limit int) (*Posts, error) {
+	return fetchPost(user.insta, fetchPostOptions{
+		limit:  limit,
+		offset: "",
+		userID: user.ID,
+	})
+}
+
+func fetchPost(insta *Instagram, opts fetchPostOptions) (*Posts, error) {
 	variables := map[string]string{
-		"after": "",
+		"after": opts.offset,
 		"first": "12",
-		"id":    id,
+		"id":    fmt.Sprintf("%d", opts.userID),
 	}
 
-	if opts.Limit > 0 {
-		variables["first"] = fmt.Sprintf("%d", opts.Limit)
-
-	}
-	if opts.Offset != "" {
-		variables["after"] = opts.Offset
+	if opts.limit > 0 {
+		variables["first"] = fmt.Sprintf("%d", opts.limit)
 	}
 
 	variablesJSON, err := json.Marshal(variables)
@@ -184,5 +205,9 @@ func (user *User) FetchPost(opts FetchPostOptions) (*Posts, error) {
 		return nil, err
 	}
 
-	return &resp.Data, nil
+	posts := &resp.Data
+	posts.insta = insta
+	posts.limit = opts.limit
+	posts.userID = opts.userID
+	return posts, nil
 }
