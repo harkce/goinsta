@@ -254,6 +254,14 @@ const (
 	// 2FA
 	url2FACheckTrusted = "two_factor/check_trusted_notification_status/"
 	url2FALogin        = "accounts/two_factor_login/"
+
+	// GraphQL
+	urlGraphQL = "graphql/query"
+)
+
+// GraphQL hashes
+const (
+	graphQLUserFeedHash = "8c2a529969ee035a5063f2fc8602a0fd"
 )
 
 // Errors
